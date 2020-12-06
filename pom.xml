@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <!--指定上级pom的配置-->
+    <!--指定上级pom-><parent>的配置，规定了springboot的各种依赖的版本-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -19,17 +19,20 @@
 
     <modules>
         <module>mall-admin</module>
+        <module>mall-common</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
         <!--spring-cloud与springcloud-alibaba要求：
         https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E-->
-        <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
+        <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.0.RELEASE</spring-cloud-alibaba.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <skipTests>true</skipTests>
+        <hutool.version>5.4.7</hutool.version>
+        <mall-common.version>1.0-SNAPSHOT</mall-common.version>
     </properties>
 
     <dependencyManagement>
@@ -39,16 +42,19 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
-                <type>pom</type><!--只引入pom文件-->
-                <scope>import</scope>
             </dependency>
             <!--springcloud-alibaba版本-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
                 <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+            </dependency>
+
+            <!--项目工具包-->
+            <dependency>
+                <groupId>com.zxf</groupId>
+                <artifactId>mall-common</artifactId>
+                <version>${mall-common.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
